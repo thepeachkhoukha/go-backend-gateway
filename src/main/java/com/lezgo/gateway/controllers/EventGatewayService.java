@@ -2,7 +2,7 @@ package com.lezgo.gateway.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lezgo.gateway.models.*;
+import com.lezgo.gateway.models.events.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;

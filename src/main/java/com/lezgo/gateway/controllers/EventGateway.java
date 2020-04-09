@@ -1,7 +1,6 @@
 package com.lezgo.gateway.controllers;
 
-import com.lezgo.gateway.models.*;
-
+import com.lezgo.gateway.models.events.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

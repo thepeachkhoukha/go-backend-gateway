@@ -1,14 +1,9 @@
 package com.lezgo.gateway.controllers;
 
-import com.lezgo.gateway.models.AuthenticationRequest;
-import com.lezgo.gateway.models.SignUpRequest;
-import com.lezgo.gateway.models.UserInfoRequest;
+import com.lezgo.gateway.models.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -29,13 +24,33 @@ public class GatewayImplementation implements Gateway{
     }
 
     @Override
-    @RequestMapping(value = "/getuser", method = RequestMethod.POST)
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity<?> getUserInfo(@RequestBody UserInfoRequest userInfoRequest){
         return gatewayService.getUserInfo(userInfoRequest);
     }
 
-    @RequestMapping(value = "/getusergeneralinfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/usergeneralinfo", method = RequestMethod.POST)
     public ResponseEntity<?> getUserGeneralInfo(@RequestBody UserInfoRequest userInfoRequest){
         return ResponseEntity.ok().body(gatewayService.getUserGeneralInfo(userInfoRequest));
+    }
+
+    @RequestMapping(value = "/usercircle", method = RequestMethod.POST)
+    public ResponseEntity<?> getUserCircle(@RequestBody UserInfoRequest userInfoRequest){
+        return gatewayService.getUserCircle(userInfoRequest);
+    }
+
+    @RequestMapping(value = "/friend", method = RequestMethod.GET)
+    public ResponseEntity<?> checkFriendship(@RequestParam String username, @RequestParam String friendname, @RequestParam String token){
+        return gatewayService.checkFriendship(username, friendname, token);
+    }
+
+    @RequestMapping(value = "/addfriend", method = RequestMethod.POST)
+    public ResponseEntity<?> addFriendship(@RequestBody FriendshipRequestWrapper friendshipRequestWrapper){
+        return gatewayService.addFriendship(friendshipRequestWrapper);
+    }
+
+    @RequestMapping(value = "/deletefriend", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteFriendship(@RequestParam String username, @RequestParam String friendname, @RequestParam String token){
+        return gatewayService.deleteFriendship(username, friendname, token);
     }
 }
